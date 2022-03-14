@@ -1,6 +1,6 @@
 <h1>Search Github Profile-ReactJS</h1>
 
-<p>Esse projeto é um buscador de perfil do Github. Utliza a API do Github, que disponibliza informações públicas em formato JSON, para consumir e mostrar informações de forma resumida.</p>
+<p>Esse projeto é um buscador de perfil do Github. Utiliza a API do Github, que disponibliza informações públicas em formato JSON, para consumir e mostrar informações de forma resumida.</p>
 
 <h2>Foi criado para estudos: </h2>
 
