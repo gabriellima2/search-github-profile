@@ -1,6 +1,8 @@
 import { useContext } from "react";
-import { ThemeProvider } from "styled-components";
 import ThemeContext from "../../AppContext/ThemeContext";
+
+import { ThemeProvider } from "styled-components";
+
 import { GlobalStyle } from "../../GlobalStyles";
 import { Container } from "./styles";
 
