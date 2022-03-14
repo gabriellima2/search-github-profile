@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 
 import ThemeContext from '../../AppContext/ThemeContext';
 import DataContext from '../../AppContext/DataContext';
@@ -58,13 +58,28 @@ export default function Header(props) {
 
     const request = async () => {
         try {
-            const dataResponse = await fetch(`${BASE_URL}${username}`, {method: 'GET'});
-            const reposResponse = await fetch(`${BASE_URL}${username}/repos`, {method: 'GET'})
+            const dataResponse = await fetch(`
+                ${BASE_URL}${username}`, {method: 'GET'}
+            );
+            const reposResponse = await fetch(`
+                ${BASE_URL}${username}/repos`, {method: 'GET'}
+            );
+            const followersResponse = await fetch(`
+                ${BASE_URL}${username}/followers`, {method: 'GET'}
+            );
+            const followingResponse = await fetch(`
+                ${BASE_URL}${username}/following`, {method: 'GET'}
+            );
+
             const data = await dataResponse.json();
             const repos = await reposResponse.json();
+            const followers = await followersResponse.json();
+            const following = await followingResponse.json();
 
             dataCTX.setUserData(data);
             dataCTX.setUserRepos(repos);
+            dataCTX.setUserFollowers(followers);
+            dataCTX.setUserFollowing(following);
         } catch (err) {
             console.log(err);
         };
@@ -91,7 +106,11 @@ export default function Header(props) {
                 }
                 <ButtonToggleTheme
                     onClick={ handleClick }>
-                    { buttonToggle === 'off' ? <BsToggleOff /> : <BsToggleOn /> }
+                    { 
+                        buttonToggle === 'off' ?
+                        <BsToggleOff /> :
+                        <BsToggleOn /> 
+                    }
                 </ButtonToggleTheme>
             </ElementsContainer>
         </HeaderContainer>

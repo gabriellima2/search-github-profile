@@ -60,7 +60,11 @@ export default function Main() {
             </UserRepos>
 
             <GithubLink>
-                <a href="#">Projeto {<BsGithub/>}</a>
+                <a 
+                    href='https://github.com/gabriellima2/search-github-profile'
+                    target='_blank'>
+                    Projeto {<BsGithub/>}
+                </a>
             </GithubLink>
         </MainContainer>        
     );

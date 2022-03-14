@@ -10,6 +10,7 @@ export const ListReposContainer = styled.div`
 
     h1 {
         color: ${({ theme }) => theme.neutral};
+        text-align: center;
     }
 
     @media screen and (max-width: 750px) {

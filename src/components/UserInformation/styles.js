@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const UserInformationContainer = styled.div`
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,6 +11,7 @@ export const UserInformationContainer = styled.div`
 export const Title = styled.h1`
     color: ${({ theme }) => theme.neutral};
     font-size: 1.8em;
+    text-align: center;
 `;
 
 export const UserContainer = styled.div`
@@ -63,6 +64,9 @@ export const UserData = styled.div`
         color: ${({ theme }) => theme.accent.primary};
         font-size: 0.8em;
         transition: all 0.2s ease-in;
+        display: flex;
+        align-items: center;
+        gap: 10px;
 
         &:hover {
             color: ${({ theme }) => theme.accent.secondary};

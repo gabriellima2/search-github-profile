@@ -1,7 +1,14 @@
 import { useContext } from 'react';
 import DataContext from '../../AppContext/DataContext';
+
 import GoBackButton from '../GoBackButton';
-import { ListReposContainer, Repos, ReposContainer, CreatedData } from './styles';
+
+import { 
+    ListReposContainer,
+    ReposContainer,
+    CreatedData,
+    Repos 
+} from './styles';
 
 export default function ListRepos() {
     const dataCTX = useContext(DataContext);
@@ -19,7 +26,9 @@ export default function ListRepos() {
                                 <Repos key={repo.id}>
                                     <h2>{ repo.name }</h2>
                                     <p>{ repo.description }</p>
-                                    <CreatedData>{ repo.created_at }</CreatedData>
+                                    <CreatedData>
+                                        { repo.created_at }
+                                    </CreatedData>
                                     <a
                                         href={ repo.html_url }
                                         target='_blank'>
