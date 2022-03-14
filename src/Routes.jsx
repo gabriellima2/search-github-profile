@@ -10,18 +10,21 @@ import {
 } from 'react-router-dom';
 
 import ThemeContextProvider from './AppContext/ThemeContext/Provider';
+import DataProvider from './AppContext/DataContext/Provider';
 
 export default function AppRoutes() {
     return (
         <ThemeContextProvider>
-            <Router>
-                <Routes>
-                    <Route path='/' exact element={ <Home /> } />
-                    <Route path='/repos' element={ <Repos /> }/>
-                    <Route path='/followers' element={ <Followers /> } />
-                    <Route path='/following' element={ <Following /> } />
-                </Routes>
-            </Router>
+            <DataProvider>
+                <Router>
+                        <Routes>
+                            <Route path='/' exact element={ <Home /> } />
+                            <Route path='/repos' element={ <Repos /> }/>
+                            <Route path='/followers' element={ <Followers /> } />
+                            <Route path='/following' element={ <Following /> } />
+                        </Routes>
+                </Router>
+            </DataProvider>
         </ThemeContextProvider>
     );
 };

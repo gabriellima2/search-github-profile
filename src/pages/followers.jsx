@@ -1,17 +1,15 @@
 import Wrapper from '../components/Wrapper';
-import Header from '../components/Header';
 import UserInformation from '../components/UserInformation';
 
-import ThemeContext from '../AppContext/ThemeContext';
 import { useContext } from 'react';
+import DataContext from '../AppContext/DataContext';
 
 export default function Followers() {
-    const ctx = useContext(ThemeContext)
+    const dataCTX = useContext(DataContext);
 
     return (
         <Wrapper>
-            <Header toggleTheme={ ctx.toggleTheme }/>
-            <UserInformation title='Seguidores'/>
+            <UserInformation title='Seguidores' data={dataCTX.userFollowers}/>
         </Wrapper>
     );
 };

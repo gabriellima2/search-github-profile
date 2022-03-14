@@ -8,42 +8,63 @@ import {
     UserFollowers,
     UserRepos,
     UserFollowing,
-    GithubLink
+    GithubLink,
+    EmptyData,
+    EmptyDataContainer
 } from './styles';
 
-import { BsGithub } from 'react-icons/bs';
+import { BsGithub, BsPersonFill } from 'react-icons/bs';
 
 import { Link } from 'react-router-dom';
 
+import { useContext } from 'react';
+import DataContext from '../../AppContext/DataContext';
+
 export default function Main() {
+    const dataCTX = useContext(DataContext);
+    const { userData } = dataCTX;
+
+    if ( !userData ) {
+        return (
+            <EmptyDataContainer>
+                <EmptyData>{ <BsPersonFill /> }</EmptyData>
+                <p>Nenhum dado para mostrar, faça uma pesquisa.</p>
+            </EmptyDataContainer>
+        );
+    };
+
     return (
         <MainContainer>
             <UserProfile>
-                <Photo src='' alt='' />
-                <Username>USERNAME</Username>
-                <Bio>BIO</Bio>
+                <Photo src={ userData.avatar_url } alt={ userData.login } />
+                <Username>{ userData.login }</Username>
+                <Bio>{ userData.bio }</Bio>
             </UserProfile>
 
             <UserFollowing>
                 <Title>Seguindo</Title>
-                <p>Total: </p>
+                <p>TOTAL: { userData.following }</p>
                 <Link to='/following'>Ver Seguindo</Link>
             </UserFollowing>
 
             <UserFollowers>
                 <Title>Seguidores</Title>
-                <p>Total: </p>
+                <p>TOTAL: { userData.followers }</p>
                 <Link to='/followers'>Ver Seguidores</Link>
             </UserFollowers>
             
             <UserRepos>
                 <Title>Repositórios</Title>
-                <p>Total: </p>
+                <p>TOTAL: { userData.public_repos }</p>
                 <Link to='/repos'>Ver Todos</Link>
             </UserRepos>
 
             <GithubLink>
-                <a href="#">Projeto {<BsGithub/>}</a>
+                <a 
+                    href='https://github.com/gabriellima2/search-github-profile'
+                    target='_blank'>
+                    Projeto {<BsGithub/>}
+                </a>
             </GithubLink>
         </MainContainer>        
     );

@@ -1,19 +1,42 @@
-import GoBackButton from "../GoBackButton";
-import { ListReposContainer, Repos, ReposContainer } from "./styles";
+import { useContext } from 'react';
+import DataContext from '../../AppContext/DataContext';
 
-export default function ListRepos(props) {
+import GoBackButton from '../GoBackButton';
+
+import { 
+    ListReposContainer,
+    ReposContainer,
+    CreatedData,
+    Repos 
+} from './styles';
+
+export default function ListRepos() {
+    const dataCTX = useContext(DataContext);
+    const { userRepos, userData } = dataCTX;
+
     return (
         <ListReposContainer>
             <GoBackButton />
-            <h1>Repositórios de USERNAME</h1>
+            <h1>Repositórios de { userData.login }</h1>
             <ReposContainer>
                 <div>
                     <ul>
-                        <Repos>
-                            <h2>Titulo</h2>
-                            <p>Descrição</p>
-                            <a href="#">Ver no Github</a>
-                        </Repos>
+                        {
+                            userRepos.map( repo => (
+                                <Repos key={repo.id}>
+                                    <h2>{ repo.name }</h2>
+                                    <p>{ repo.description }</p>
+                                    <CreatedData>
+                                        { repo.created_at }
+                                    </CreatedData>
+                                    <a
+                                        href={ repo.html_url }
+                                        target='_blank'>
+                                        Ver no Github
+                                    </a>
+                                </Repos>
+                            ))
+                        }
                     </ul>
                 </div>
             </ReposContainer>

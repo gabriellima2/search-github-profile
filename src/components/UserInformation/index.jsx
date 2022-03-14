@@ -7,22 +7,42 @@ import {
     UserData
 } from './styles';
 
+import { BsGithub } from 'react-icons/bs';
+
 import GoBackButton from '../GoBackButton';
 
-export default function UserInformation(props) {
+import { useContext } from 'react';
+import DataContext from '../../AppContext/DataContext';
+
+export default function UserInformation({ title, data }) {
+    const dataCTX = useContext(DataContext);
+
+    if ( !data ) return null;
+
     return (
         <UserInformationContainer>
             <GoBackButton />
-            <Title>{ props.title } de USERNAME</Title>
+            <Title>{ title } de { dataCTX.userData.login }</Title>
             <UserContainer>
                 <ul>
-                    <Users>
-                        <ProfilePhoto src='' alt='' />
-                        <UserData>
-                            <p>USERNAME</p>
-                            <a href="#">Visitar Perfil!</a>
-                        </UserData>
-                    </Users>
+                    {
+                        data.map( information => (
+                            <Users key={information.id}>
+                                <ProfilePhoto
+                                    src={information.avatar_url}
+                                    alt={information.login}
+                                />
+                                <UserData>
+                                    <p>{ information.login }</p>
+                                    <a 
+                                        href={information.html_url} 
+                                        target='_blank'>
+                                        Visitar Perfil! {<BsGithub />}
+                                    </a>
+                                </UserData>
+                            </Users>
+                        ))
+                    }
                 </ul>
             </UserContainer>
         </UserInformationContainer>
