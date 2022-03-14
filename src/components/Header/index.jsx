@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
-import {
-    verifyLocalStorage,
-    addInStorage
-} from '../../utils/LocalStorage';
+import ThemeContext from '../../AppContext/ThemeContext';
+import DataContext from '../../AppContext/DataContext';
+
+import { verifyLocalStorage } from '../../utils/LocalStorage';
 
 import { 
     BsSearch,
@@ -20,7 +20,14 @@ import {
     ButtonToggleTheme
 } from './styles';
 
+const BASE_URL = 'https://api.github.com/users/';
+
 export default function Header(props) {
+    const [ username, setUsername ] = useState('');
+
+    const themeCTX = useContext(ThemeContext);
+    const dataCTX = useContext(DataContext);
+
     const [ buttonToggle, setButtonToggle ] = useState(
         () => {
             const data = verifyLocalStorage('theme');
@@ -30,7 +37,37 @@ export default function Header(props) {
 
     const handleClick = () => {
         setButtonToggle( current => current === 'off' ? 'on' : 'off' );
-        props.toggleTheme();
+        themeCTX.toggleTheme();
+    };
+
+    const handleKeyPress = e => {
+        if ( e.code === 'Enter' ) {
+            validateValue();
+        };
+    };
+
+    const handleChange = ({ target }) => {
+        setUsername(target.value);
+    };
+
+    const validateValue = () => {
+        if ( !username ) return;
+
+        request();
+    };
+
+    const request = async () => {
+        try {
+            const dataResponse = await fetch(`${BASE_URL}${username}`, {method: 'GET'});
+            const reposResponse = await fetch(`${BASE_URL}${username}/repos`, {method: 'GET'})
+            const data = await dataResponse.json();
+            const repos = await reposResponse.json();
+
+            dataCTX.setUserData(data);
+            dataCTX.setUserRepos(repos);
+        } catch (err) {
+            console.log(err);
+        };
     };
 
     return (
@@ -40,8 +77,16 @@ export default function Header(props) {
                 {
                     props.searchBar && 
                     <SearchBar>
-                        <input type="text" placeholder='Pesquise' />
-                        <button>{ <BsSearch /> }</button>
+                        <input
+                            type="text"
+                            placeholder='Pesquise'
+                            onKeyPress={handleKeyPress}
+                            onChange={handleChange}
+                            value={username}
+                        />
+                        <button
+                            onClick={validateValue}>
+                        { <BsSearch /> }</button>
                     </SearchBar>
                 }
                 <ButtonToggleTheme

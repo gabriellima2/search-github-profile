@@ -16,7 +16,7 @@ export const Title = styled.h1`
 export const UserContainer = styled.div`
     width: 100%;
     max-width: 800px;
-    height: 600px;
+    height: 90%;
     margin-top: 40px;
     padding: 20px;
     overflow-x: hidden;

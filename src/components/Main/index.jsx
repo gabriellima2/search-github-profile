@@ -8,39 +8,54 @@ import {
     UserFollowers,
     UserRepos,
     UserFollowing,
-    GithubLink
+    GithubLink,
+    EmptyData,
+    EmptyDataContainer
 } from './styles';
 
-import { BsGithub } from 'react-icons/bs';
+import { BsGithub, BsPersonFill } from 'react-icons/bs';
 
 import { Link } from 'react-router-dom';
 
-import Test from '../../public/img/lobo1.jpg';
+import { useContext } from 'react';
+import DataContext from '../../AppContext/DataContext';
 
 export default function Main() {
+    const dataCTX = useContext(DataContext);
+    const { userData } = dataCTX;
+
+    if ( !userData ) {
+        return (
+            <EmptyDataContainer>
+                <EmptyData>{ <BsPersonFill /> }</EmptyData>
+                <p>Nenhum dado para mostrar, faça uma pesquisa.</p>
+            </EmptyDataContainer>
+        );
+    };
+
     return (
         <MainContainer>
             <UserProfile>
-                <Photo src={Test} alt='gabriellima2' />
-                <Username>gabriellima2</Username>
-                <Bio>Web Front End | Javascript</Bio>
+                <Photo src={ userData.avatar_url } alt={ userData.login } />
+                <Username>{ userData.login }</Username>
+                <Bio>{ userData.bio }</Bio>
             </UserProfile>
 
             <UserFollowing>
                 <Title>Seguindo</Title>
-                <p>Total: 2</p>
+                <p>TOTAL: { userData.following }</p>
                 <Link to='/following'>Ver Seguindo</Link>
             </UserFollowing>
 
             <UserFollowers>
                 <Title>Seguidores</Title>
-                <p>Total: 8</p>
+                <p>TOTAL: { userData.followers }</p>
                 <Link to='/followers'>Ver Seguidores</Link>
             </UserFollowers>
             
             <UserRepos>
                 <Title>Repositórios</Title>
-                <p>Total: 11</p>
+                <p>TOTAL: { userData.public_repos }</p>
                 <Link to='/repos'>Ver Todos</Link>
             </UserRepos>
 
