@@ -27,27 +27,28 @@
 <h2>Algumas imagens: </h2>
 
 <div>
-    <img src="./src/public/img/light_theme_img1.png"/>
-    <img src="./src/public/img/dark_theme_img1.png"/>
+    <img src="./src/public/img/light_theme_img1.png" width="500px"/>
+    <img src="./src/public/img/dark_theme_img1.png" width="500px"/>
 <div>
 
 <h2></h2>
 
 <div>
-    <img src="./src/public/img/light_theme_img2.png"/>
-    <img src="./src/public/img/dark_theme_img2.png"/>
+    <img src="./src/public/img/light_theme_img2.png" width="500px"/>
+    <img src="./src/public/img/dark_theme_img2.png" width="500px"/>
 <div>
 
 <h2></h2>
 
 <div>
-    <img src="./src/public/img/light_theme_img3.png"/>
-    <img src="./src/public/img/dark_theme_img3.png"/>
+    <img src="./src/public/img/light_theme_img3.png" width="500px"/>
+    <img src="./src/public/img/dark_theme_img3.png" width="500px"/>
 <div>
 
 <h2>Rodando o projeto: </h2>
 
-<p>OBS: É necessário que tenha o [NodeJS](https://nodejs.org/en/) e o [Git](https://git-scm.com) instalados em sua máquina!</p>
+OBS: É necessário que tenha o [NodeJS](https://nodejs.org/en/) e o [Git](https://git-scm.com) instalados em sua máquina!
+
 
 ```bash 
 1. Clone o repositório:
