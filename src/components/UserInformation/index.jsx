@@ -9,19 +9,17 @@ import {
 
 import GoBackButton from '../GoBackButton';
 
-import Test from '../../public/img/lobo1.jpg';
-
 export default function UserInformation(props) {
     return (
         <UserInformationContainer>
             <GoBackButton />
-            <Title>{ props.title } de Gabriel</Title>
+            <Title>{ props.title } de USERNAME</Title>
             <UserContainer>
                 <ul>
                     <Users>
-                        <ProfilePhoto src={Test} alt='gabriellima2' />
+                        <ProfilePhoto src='' alt='' />
                         <UserData>
-                            <p>gabriellima2</p>
+                            <p>USERNAME</p>
                             <a href="#">Visitar Perfil!</a>
                         </UserData>
                     </Users>

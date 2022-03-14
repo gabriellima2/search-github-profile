@@ -5,7 +5,7 @@ export default function ListRepos(props) {
     return (
         <ListReposContainer>
             <GoBackButton />
-            <h1>Repositórios de Gabriel</h1>
+            <h1>Repositórios de USERNAME</h1>
             <ReposContainer>
                 <div>
                     <ul>

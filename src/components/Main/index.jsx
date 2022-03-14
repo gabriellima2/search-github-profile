@@ -15,32 +15,30 @@ import { BsGithub } from 'react-icons/bs';
 
 import { Link } from 'react-router-dom';
 
-import Test from '../../public/img/lobo1.jpg';
-
 export default function Main() {
     return (
         <MainContainer>
             <UserProfile>
-                <Photo src={Test} alt='gabriellima2' />
-                <Username>gabriellima2</Username>
-                <Bio>Web Front End | Javascript</Bio>
+                <Photo src='' alt='' />
+                <Username>USERNAME</Username>
+                <Bio>BIO</Bio>
             </UserProfile>
 
             <UserFollowing>
                 <Title>Seguindo</Title>
-                <p>Total: 2</p>
+                <p>Total: </p>
                 <Link to='/following'>Ver Seguindo</Link>
             </UserFollowing>
 
             <UserFollowers>
                 <Title>Seguidores</Title>
-                <p>Total: 8</p>
+                <p>Total: </p>
                 <Link to='/followers'>Ver Seguidores</Link>
             </UserFollowers>
             
             <UserRepos>
                 <Title>Repositórios</Title>
-                <p>Total: 11</p>
+                <p>Total: </p>
                 <Link to='/repos'>Ver Todos</Link>
             </UserRepos>
 
